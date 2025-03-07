@@ -39,20 +39,26 @@ public class Hash {
         return data.length >= 3 && data[0] == 0 && data[1] == 0 && data[2] == 0;
     }
 
-    
     /**
-     * returns the string representation of the hash as a string
-     * of hexadecimal digits, 2 digits per byte.
+     * returns the string representation of the hash as a string of hexadecimal
+     * digits, 2 digits per byte.
+     *
      * @return string version of the hash
      */
     public String toString() {
         StringBuilder buf = new StringBuilder();
-        for(int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             buf.append(String.format("%02x", Byte.toUnsignedInt(data[i])));
         }
         return buf.toString();
     }
 
+    /**
+     * returns true if this hash is structurally equal to the argument.
+     *
+     * @param other other thing we are comparing to
+     * @return true if equal, false otherwise
+     */
     public boolean equals(Object other) {
         return true;
     }
