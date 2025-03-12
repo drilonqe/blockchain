@@ -1,5 +1,6 @@
 package edu.grinnell.csc207.blockchain;
 
+import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -14,27 +15,47 @@ public class Block {
     private Hash hash;
     private long nonce;
 
-    public Block(int num, int amount, Hash prevHash) {
+    public Block(int num, int amount, Hash prevHash) throws NoSuchAlgorithmException {
+        // citation: Prof Osera helped
         this.num = num;
         this.amount = amount;
         this.prevHash = prevHash;
-        // I do not know what to do beyond this
+        long possibleNonce = 0;
+        
+        while(true) {
+        Hash possibleHash = calculateHash();
+        if(possibleHash.isValid()) {
+            this.nonce = possibleNonce;
+            this.hash = possibleHash;
+            break;
+        }
+        possibleNonce++;
+        }
     }
 
-    public Block(int num, int amount, Hash prevHash, long nonce) {
+    public Block(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
+        // citation: Prof Osera helped
         this.num = num;
         this.amount = amount;
         this.prevHash = prevHash;
         this.nonce = nonce;
-        // or this
+        this.hash = calculateHash();
     }
     
-    public static byte[] calculateHash(String msg) throws NoSuchAlgorithmException {
+    public Hash calculateHash() throws NoSuchAlgorithmException {
     MessageDigest md = MessageDigest.getInstance("sha-256");
-    md.update(msg.getBytes());
-    byte[] hash = md.digest();
-    ByteBuffer.allocate(4).putInt(x).array();
-    return hash;
+    // adding the block number 
+    md.update(ByteBuffer.allocate(4).putInt(num).array());
+    // adding the transaction amount
+    md.update(ByteBuffer.allocate(4).putInt(amount).array());
+    
+    if (prevHash != null) {
+        md.update(prevHash.getData());
+    }
+    
+    md.update(ByteBuffer.allocate(8).putLong(nonce).array());
+
+    return new Hash(md.digest());
 }
     /**
      * returns the number of this block.
