@@ -1,7 +1,5 @@
 package edu.grinnell.csc207.blockchain;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 /**
