@@ -21,7 +21,7 @@ public class Block {
         this.amount = amount;
         this.prevHash = prevHash;
         long possibleNonce = 0;
-        
+
         while(true) {
         Hash possibleHash = calculateHash();
         if(possibleHash.isValid()) {
@@ -49,10 +49,12 @@ public class Block {
     // adding the transaction amount
     md.update(ByteBuffer.allocate(4).putInt(amount).array());
     
+    // add previous hash data
     if (prevHash != null) {
         md.update(prevHash.getData());
     }
     
+    // adding nonce
     md.update(ByteBuffer.allocate(8).putLong(nonce).array());
 
     return new Hash(md.digest());
