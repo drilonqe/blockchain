@@ -60,6 +60,13 @@ public class Hash {
      * @return true if equal, false otherwise
      */
     public boolean equals(Object other) {
-        return true;
+        // Check if ohter is a Hash
+        if (!(other instanceof Hash)) {
+            return false;
+        }
+
+        // cast to hash and compare the arrays
+        Hash otherHash = (Hash) other;
+        return Arrays.equals(getData(), otherHash.getData());
     }
 }
