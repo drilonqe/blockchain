@@ -22,14 +22,14 @@ public class Block {
         this.prevHash = prevHash;
         long possibleNonce = 0;
 
-        while(true) {
-        Hash possibleHash = calculateHash();
-        if(possibleHash.isValid()) {
-            this.nonce = possibleNonce;
-            this.hash = possibleHash;
-            break;
-        }
-        possibleNonce++;
+        while (true) {
+            Hash possibleHash = calculateHash();
+            if (possibleHash.isValid()) {
+                this.nonce = possibleNonce;
+                this.hash = possibleHash;
+                break;
+            }
+            possibleNonce++;
         }
     }
 
@@ -41,24 +41,25 @@ public class Block {
         this.nonce = nonce;
         this.hash = calculateHash();
     }
-    
-    public Hash calculateHash() throws NoSuchAlgorithmException {
-    MessageDigest md = MessageDigest.getInstance("sha-256");
-    // adding the block number 
-    md.update(ByteBuffer.allocate(4).putInt(num).array());
-    // adding the transaction amount
-    md.update(ByteBuffer.allocate(4).putInt(amount).array());
-    
-    // add previous hash data
-    if (prevHash != null) {
-        md.update(prevHash.getData());
-    }
-    
-    // adding nonce
-    md.update(ByteBuffer.allocate(8).putLong(nonce).array());
 
-    return new Hash(md.digest());
-}
+    public Hash calculateHash() throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("sha-256");
+        // adding the block number
+        md.update(ByteBuffer.allocate(4).putInt(num).array());
+        // adding the transaction amount
+        md.update(ByteBuffer.allocate(4).putInt(amount).array());
+
+        // add previous hash data
+        if (prevHash != null) {
+            md.update(prevHash.getData());
+        }
+
+        // adding nonce
+        md.update(ByteBuffer.allocate(8).putLong(nonce).array());
+
+        return new Hash(md.digest());
+    }
+
     /**
      * returns the number of this block.
      *
@@ -85,7 +86,7 @@ public class Block {
     public long getNonce() {
         return nonce;
     }
-    
+
     /**
      * returns the hash of the previous block in the blockchain.
      * 
@@ -94,18 +95,18 @@ public class Block {
     public Hash getPrevHash() {
         return prevHash;
     }
-    
+
     /**
      * returns the hash of this block.
      * 
      * @return hash of block
      */
-   public Hash getHash() {
+    public Hash getHash() {
         return hash;
     }
-   
-   public String toString(){
-       return String.format("Block %d  (Amount: %d, Nonce: %d, prevHash: %s, hash: %s)",
+
+    public String toString() {
+        return String.format("Block %d  (Amount: %d, Nonce: %d, prevHash: %s, hash: %s)",
                 num, amount, nonce, prevHash.toString(), hash.toString());
-   }
+    }
 }

@@ -61,16 +61,16 @@ public class BlockChain {
         return size;
     }
 
-
     /**
      * appends block to the blockchain
+     * 
      * @param blk valid block to append
      */
-    public void append(Block blk) {     
-            Node newBlock = new Node(blk);
-            last.next = newBlock;
-            last = newBlock;
-            size++;      
+    public void append(Block blk) {
+        Node newBlock = new Node(blk);
+        last.next = newBlock;
+        last = newBlock;
+        size++;
     }
 
     /**
@@ -102,18 +102,19 @@ public class BlockChain {
     }
 
     /**
-     * walks the blockchain and ensures that its blocks 
+     * walks the blockchain and ensures that its blocks
      * are consistent and valid.
+     * 
      * @return true is blocks are valid, false otherwise
      */
     public boolean isValidBlockChain() {
-        return true; 
-        //still need to implement
+        return true;
+        // still need to implement
     }
 
     /**
      * prints Alice's and Bob's respective balances
-     *  in the form Alice: <amt>, Bob: <amt> on a single line
+     * in the form Alice: <amt>, Bob: <amt> on a single line
      */
     public void printBalances() {
         // need to implement
@@ -121,10 +122,11 @@ public class BlockChain {
 
     /**
      * the string representation of each of Blockchain blocks
+     * 
      * @return a string representation of the BlockChain
      */
     public String toString() {
-            return null;
+        return null;
         // need to implement
     }
 }
