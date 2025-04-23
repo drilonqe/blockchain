@@ -11,11 +11,11 @@ public class BlockChain {
         Block block;
         Node next;
 
+        
         public Node(Block block) {
             this.block = block;
             this.next = null;
         }
-
     }
 
     private Node first; // first element

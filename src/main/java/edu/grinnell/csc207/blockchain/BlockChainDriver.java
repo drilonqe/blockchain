@@ -45,6 +45,7 @@ public class BlockChainDriver {
                     long appendNonce = Long.parseLong(scanner.nextLine());
                     Block newBlock = new Block(blockchain.getSize(), appendAmt, blockchain.getHash(), appendNonce);
                     blockchain.append(newBlock);
+                    System.out.println(blockchain.toString());
                     break;
 
                 case "remove":
@@ -54,8 +55,10 @@ public class BlockChainDriver {
                 case "check":
                     if (blockchain.isValidBlockChain()) {
                         System.out.println("It is a valid blockchain");
+                        break;
                     } else {
                         System.out.println("It is not a valid blockchain");
+                        break;
                     }
 
                 case "report":
