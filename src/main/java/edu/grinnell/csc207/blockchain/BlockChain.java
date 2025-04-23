@@ -106,10 +106,34 @@ public class BlockChain {
      * are consistent and valid.
      * 
      * @return true is blocks are valid, false otherwise
+     *         Citation: Got advice from classmate Fui in how to implement this
+     *         method
      */
     public boolean isValidBlockChain() {
+        Node cur = first;
+        int balance = cur.block.getAmount();
+        Hash previousHash = null;
+
+        while (cur.next != null) {
+            balance += cur.block.getAmount();
+
+            if (balance < 0) {
+                return false; // no negative balance
+            }
+
+            if (!cur.block.getHash().isValid()) {
+                return false; // Block's hash must meet the requirements
+            }
+
+            if (previousHash != null) {
+                if (!cur.block.getPrevHash().equals(previousHash)) {
+                    return false; // block's prevHash must match previousHash
+                }
+            }
+            previousHash = cur.block.getHash();
+            cur = cur.next;
+        }
         return true;
-        // still need to implement
     }
 
     /**
@@ -117,7 +141,17 @@ public class BlockChain {
      * in the form Alice: <amt>, Bob: <amt> on a single line
      */
     public void printBalances() {
-        // need to implement
+        int aliceBalance = 0;
+        int initial = first.block.getAmount();
+        Node cur = first;
+
+        while (cur != null) {
+            aliceBalance += cur.block.getAmount();
+            cur = cur.next;
+        }
+
+        int bobBalance = initial - aliceBalance; // Bob gets what Alice doesn't have
+        System.out.println("Alice: " + aliceBalance + ", Bob: " + bobBalance);
     }
 
     /**
@@ -126,7 +160,13 @@ public class BlockChain {
      * @return a string representation of the BlockChain
      */
     public String toString() {
-        return null;
-        // need to implement
+        StringBuilder buf = new StringBuilder();
+        Node cur = first;
+
+        while (cur != null) {
+            buf.append(cur.block.toString()).append("\n");
+            cur = cur.next;
+        }
+        return buf.toString();
     }
 }
