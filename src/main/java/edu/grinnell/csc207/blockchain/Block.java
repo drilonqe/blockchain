@@ -15,6 +15,14 @@ public class Block {
     private Hash hash;
     private long nonce;
 
+    /**
+     * Constructor for a new block by mining the nonce
+     * 
+     * @param num      block number
+     * @param amount   amount transferred
+     * @param prevHash hash of previous block
+     * @throws NoSuchAlgorithmException
+     */
     public Block(int num, int amount, Hash prevHash) throws NoSuchAlgorithmException {
         // citation: Prof Osera helped
         this.num = num;
@@ -33,6 +41,15 @@ public class Block {
         }
     }
 
+    /**
+     * Constructor for a new block using provided nonce
+     * 
+     * @param num      block number
+     * @param amount   amount transferred
+     * @param prevHash hash of previous block
+     * @param nonce    nonce of block
+     * @throws NoSuchAlgorithmException
+     */
     public Block(int num, int amount, Hash prevHash, long nonce) throws NoSuchAlgorithmException {
         // citation: Prof Osera helped
         this.num = num;
@@ -42,6 +59,12 @@ public class Block {
         this.hash = calculateHash();
     }
 
+    /**
+     * Calculates hash of block
+     * 
+     * @return computed hash
+     * @throws NoSuchAlgorithmException
+     */
     public Hash calculateHash() throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("sha-256");
         // adding the block number
@@ -105,6 +128,11 @@ public class Block {
         return hash;
     }
 
+    /**
+     * Returns the string representation of the block.
+     * 
+     * @return block as string with its details
+     */
     public String toString() {
         return String.format("Block %d  (Amount: %d, Nonce: %d, prevHash: %s, hash: %s)",
                 num, amount, nonce, prevHash.toString(), hash.toString());

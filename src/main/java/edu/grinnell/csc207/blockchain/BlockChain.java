@@ -138,7 +138,7 @@ public class BlockChain {
 
     /**
      * prints Alice's and Bob's respective balances
-     * in the form Alice: <amt>, Bob: <amt> on a single line
+     * in the form Alice: " ", Bob: " " on a single line
      */
     public void printBalances() {
         int aliceBalance = 0;

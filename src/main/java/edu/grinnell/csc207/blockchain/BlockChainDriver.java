@@ -35,7 +35,8 @@ public class BlockChainDriver {
                     System.out.println("Amount transferred? ");
                     int mineAmt = Integer.parseInt(scanner.nextLine());
                     Block minedBlock = blockchain.mine(mineAmt);
-                    System.out.println("Amount = " + mineAmt + ", Nonce = " + minedBlock.getNonce());
+                    System.out.println("Amount = " + mineAmt +
+                     ", Nonce = " + minedBlock.getNonce());
                     break;
 
                 case "append":
