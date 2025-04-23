@@ -35,8 +35,8 @@ public class BlockChainDriver {
                     System.out.println("Amount transferred? ");
                     int mineAmt = Integer.parseInt(scanner.nextLine());
                     Block minedBlock = blockchain.mine(mineAmt);
-                    System.out.println("Amount = " + mineAmt +
-                     ", Nonce = " + minedBlock.getNonce());
+                    System.out.println("Amount = " + mineAmt
+                            + ", Nonce = " + minedBlock.getNonce());
                     break;
 
                 case "append":
@@ -44,7 +44,8 @@ public class BlockChainDriver {
                     int appendAmt = Integer.parseInt(scanner.nextLine());
                     System.out.println("Nonce? ");
                     long appendNonce = Long.parseLong(scanner.nextLine());
-                    Block newBlock = new Block(blockchain.getSize(), appendAmt, blockchain.getHash(), appendNonce);
+                    Block newBlock = new Block(blockchain.getSize(), appendAmt,
+                            blockchain.getHash(), appendNonce);
                     blockchain.append(newBlock);
                     System.out.println(blockchain.toString());
                     break;
@@ -82,7 +83,7 @@ public class BlockChainDriver {
                     return;
 
                 default:
-                System.out.println("Invalid Command");
+                    System.out.println("Invalid Command");
 
             }
         }
