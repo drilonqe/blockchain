@@ -31,9 +31,9 @@ public class Block {
         long possibleNonce = 0;
 
         while (true) {
+            this.nonce = possibleNonce;
             Hash possibleHash = calculateHash();
             if (possibleHash.isValid()) {
-                this.nonce = possibleNonce;
                 this.hash = possibleHash;
                 break;
             }
@@ -134,7 +134,20 @@ public class Block {
      * @return block as string with its details
      */
     public String toString() {
+        String prevHashtoStr;
+        if (prevHash == null) {
+            prevHashtoStr = "null";
+        } else {
+            prevHashtoStr = prevHash.toString();
+        }
+
+        String hashtoStr;
+        if (hash == null) {
+            hashtoStr = "null";
+        } else {
+            hashtoStr = hash.toString();
+        }
         return String.format("Block %d  (Amount: %d, Nonce: %d, prevHash: %s, hash: %s)",
-                num, amount, nonce, prevHash.toString(), hash.toString());
+                num, amount, nonce, prevHashtoStr, hashtoStr);
     }
 }

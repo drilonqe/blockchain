@@ -56,10 +56,10 @@ public class BlockChainDriver {
 
                 case "check":
                     if (blockchain.isValidBlockChain()) {
-                        System.out.println("It is a valid blockchain");
+                        System.out.println("Blockchain is valid!");
                         break;
                     } else {
-                        System.out.println("It is not a valid blockchain");
+                        System.out.println("Blockchain is not valid!");
                         break;
                     }
 
