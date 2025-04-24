@@ -1,6 +1,17 @@
 # Project: Block Chain
 
 Authors: Drilon Qerimi
+### Grader Comment:
+Please run mvn checkstyle:check to see your style errors and to correct them!
+Additionally, your program seems to compile but not provide any driver to run the program. Please ensure that the driver is at least displayed and somewhat operational.
+
+### Changelog 
++ Fixed style errors by adding Javadoc comments for constructors and methods in Block.java, BlockChain.java, and Hash.java.
++ Completed the command-line interface in BlockChainDriver.java, including commands: mine, append, remove, check, report, help, and quit.
++ Resolved previous grader feedback by ensuring the driver runs correctly and displays the interactive menu.
++ Cleaned up style issues (line length, indentation, Javadoc) as per mvn checkstyle:check recommendations.
+
+The code now should run correctly and produce the desired result.
 
 
 ## Resources
@@ -17,3 +28,11 @@ https://github.com/psosera/blockchain
 mining a Block and mining the nonce.
 + https://www.w3schools.com/java/java_user_input.asp used this resource to gain
 insight of how to use scanner to get user input.
++ Got advice from classmate Fui as to how to read integer input from the user using
+ Integer.parseInt and long input using Long.parseLong in BlockChainDriver.java
++ In  BlockChainDriver.java for writing the switch (command) logic properly source:
+  https://www.w3schools.com/java/java_switch.asp
++ Got advice from classmate Fui as to how to implement isValidBlockchain() method
+in BlockChain.java
+
+
